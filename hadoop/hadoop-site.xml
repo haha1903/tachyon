@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+	<!-- NEEDED TO CHANGE -->
+	<property>
+		<name>hadoop.job.ugi</name>
+		<value>houyi,BaiduShangyan</value>
+		<description>username, password used by client</description>
+	</property>
+
+	<property>
+		<name>fs.default.name</name>
+		<value>hdfs://nmg01-khan-hdfs.dmop.baidu.com:54310</value>
+		<description>The name of the default file system. A URI whose
+			scheme and authority determine the FileSystem implementation. The
+			uri's scheme determines the config property (fs.SCHEME.impl) naming
+			the FileSystem implementation class. The uri's authority is used to
+			determine the host, port, etc. for a filesystem.</description> </property>
+
+	<property>
+		<name>dfs.http.address</name>
+		<value>nmg01-khan-hdfs.dmop.baidu.com:8070</value>
+		<description>
+			The address and the base port where the dfs namenode web ui will listen on.
+			If the port is 0 then the server will start on a free port.
+		</description>
+	</property>
+
+	<property>
+		<name>mapred.job.tracker</name>
+		<value>nmg01-khan-job.dmop.baidu.com:54311</value>
+		<description>The host and port that the MapReduce job tracker runs
+			at. If "local", then jobs are run in-process as a single map
+			and reduce task.
+		</description>
+	</property>
+
+</configuration>

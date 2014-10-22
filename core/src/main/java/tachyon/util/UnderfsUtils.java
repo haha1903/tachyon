@@ -97,17 +97,17 @@ public class UnderfsUtils {
       PrefixList excludePathPrefix) throws IOException {
     LOG.info(tfs + tfsRootPath + " " + ufsAddrRootPath + " " + excludePathPrefix);
 
-    try {
+    //    try {
       // resolve and replace hostname embedded in the given ufsAddress
       String oldpath = ufsAddrRootPath;
-      ufsAddrRootPath = NetworkUtils.replaceHostName(ufsAddrRootPath);
+      // ufsAddrRootPath = NetworkUtils.replaceHostName(ufsAddrRootPath);
       if (!ufsAddrRootPath.equalsIgnoreCase(oldpath)) {
         System.out.println("UnderFS hostname resolved: " + ufsAddrRootPath);
       }
-    } catch (UnknownHostException e) {
-      LOG.info("hostname cannot be resolved in given UFS path: " + ufsAddrRootPath);
-      throw new IOException(e);
-    }
+      //    } catch (UnknownHostException e) {
+      //      LOG.info("hostname cannot be resolved in given UFS path: " + ufsAddrRootPath);
+      //      throw new IOException(e);
+      //    }
 
     Pair<String, String> ufsPair = UnderFileSystem.parse(ufsAddrRootPath);
     String ufsAddress = ufsPair.getFirst();
