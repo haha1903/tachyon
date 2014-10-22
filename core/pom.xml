@@ -31,6 +31,21 @@
 
   <dependencies>
     <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.9</version>
+    </dependency>
+    <dependency>
+      <groupId>com.baidu.inf.hadoop</groupId>
+      <artifactId>peta</artifactId>
+      <version>3.3.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.baidu.inf.hadoop</groupId>
+      <artifactId>abaci-core</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-jsp</artifactId>
       <version>${jetty.version}</version>
@@ -168,6 +183,7 @@
         </plugins>
       </build>
       <dependencies>
+<!--
         <dependency>
           <groupId>org.apache.hadoop</groupId>
           <artifactId>hadoop-client</artifactId>
@@ -199,6 +215,7 @@
             </exclusion>
           </exclusions>
         </dependency>
+-->
       </dependencies>
     </profile>
 

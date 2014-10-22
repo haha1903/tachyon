@@ -279,7 +279,7 @@ public class TFS extends FileSystem {
    */
   @Override
   public void initialize(URI uri, Configuration conf) throws IOException {
-    super.initialize(uri, conf);
+    // super.initialize(uri, conf);
     LOG.info("initialize(" + uri + ", " + conf + "). Connecting to Tachyon: " + uri.toString());
     Utils.addS3Credentials(conf);
     setConf(conf);

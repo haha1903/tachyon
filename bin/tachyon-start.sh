@@ -100,8 +100,9 @@ start_master() {
     MASTER_ADDRESS=localhost
   fi
 
+
   echo "Starting master @ $MASTER_ADDRESS"
-  (nohup $JAVA -cp $TACHYON_JAR -Dtachyon.home=$TACHYON_HOME -Dtachyon.logger.type="MASTER_LOGGER" -Dlog4j.configuration=file:$TACHYON_CONF_DIR/log4j.properties $TACHYON_MASTER_JAVA_OPTS tachyon.master.TachyonMaster > /dev/null 2>&1) &
+  (nohup $JAVA -cp $TACHYON_HOME/hadoop:$TACHYON_JAR -Dtachyon.home=$TACHYON_HOME -Dtachyon.logger.type="MASTER_LOGGER" -Dlog4j.configuration=file:$TACHYON_CONF_DIR/log4j.properties $TACHYON_MASTER_JAVA_OPTS tachyon.master.TachyonMaster > /dev/null 2>&1) &
 }
 
 start_worker() {
@@ -112,14 +113,14 @@ start_worker() {
   fi
 
   echo "Starting worker @ `hostname -f`"
-  (nohup $JAVA -cp $TACHYON_JAR -Dtachyon.home=$TACHYON_HOME -Dtachyon.logger.type="WORKER_LOGGER" -Dlog4j.configuration=file:$TACHYON_CONF_DIR/log4j.properties $TACHYON_WORKER_JAVA_OPTS tachyon.worker.TachyonWorker `hostname -f` > /dev/null 2>&1 ) &
+  (nohup $JAVA -cp $TACHYON_HOME/hadoop:$TACHYON_JAR -Dtachyon.home=$TACHYON_HOME -Dtachyon.logger.type="WORKER_LOGGER" -Dlog4j.configuration=file:$TACHYON_CONF_DIR/log4j.properties $TACHYON_WORKER_JAVA_OPTS tachyon.worker.TachyonWorker `hostname -f` > /dev/null 2>&1 ) &
 }
 
 restart_worker() {
   RUN=`ps -ef | grep "tachyon.worker.TachyonWorker" | grep "java" | wc | cut -d" " -f7`
   if [[ $RUN -eq 0 ]] ; then
     echo "Restarting worker @ `hostname -f`"
-    (nohup $JAVA -cp $TACHYON_JAR -Dtachyon.home=$TACHYON_HOME -Dtachyon.logger.type="WORKER_LOGGER" -Dlog4j.configuration=file:$TACHYON_CONF_DIR/log4j.properties $TACHYON_WORKER_JAVA_OPTS tachyon.worker.TachyonWorker `hostname -f` > /dev/null 2>&1) &
+    (nohup $JAVA -cp $TACHYON_HOME/hadoop:$TACHYON_JAR -Dtachyon.home=$TACHYON_HOME -Dtachyon.logger.type="WORKER_LOGGER" -Dlog4j.configuration=file:$TACHYON_CONF_DIR/log4j.properties $TACHYON_WORKER_JAVA_OPTS tachyon.worker.TachyonWorker `hostname -f` > /dev/null 2>&1) &
   fi
 }
 
@@ -176,12 +177,12 @@ case "${WHAT}" in
   local)
     stop $bin
     sleep 1
-    $bin/tachyon-mount.sh SudoMount
-    stat=$?
-    if [ $stat -ne 0 ] ; then
-      echo "Mount failed, not starting"
-      exit 1
-    fi
+    #$bin/tachyon-mount.sh SudoMount
+    #stat=$?
+    #if [ $stat -ne 0 ] ; then
+    #  echo "Mount failed, not starting"
+    #  exit 1
+    #fi
     start_master
     sleep 2
     start_worker NoMount

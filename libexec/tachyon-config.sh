@@ -32,6 +32,8 @@ script=`basename "$this"`
 config_bin=`cd "$config_bin"; pwd`
 this="$config_bin/$script"
 
+JAVA_HOME=/home/users/changhai/.jumbo/opt/sun-java7
+
 # Allow for a script which overrides the default settings for system integration folks.
 [ -f "$common_bin/tachyon-layout.sh" ] && . "$common_bin/tachyon-layout.sh"
 

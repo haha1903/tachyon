@@ -271,9 +271,11 @@ public class UnderFileSystemHdfs extends UnderFileSystem {
     if (files != null) {
       String[] rtn = new String[files.length];
       int i = 0;
+      String prefix = new Path(path).getPath();
       for (FileStatus status : files) {
-        // only return the relative path, to keep consistent with java.io.File.list()
-        rtn[i ++] = status.getPath().toString().substring(path.length()); // mUfsPrefix
+	  // only return the relative path, to keep consistent with java.io.File.list()
+	  rtn[i ++] = status.getPath().getPath().substring(prefix.length()); // mUfsPrefix
+	  // rtn[i ++] = status.getPath().toString().substring(path.length()); // mUfsPrefix
       }
       return rtn;
     } else {
